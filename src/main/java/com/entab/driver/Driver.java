@@ -1,10 +1,12 @@
 package com.entab.driver;
 
-import com.entab.commonutils.Applications.ApplicationConstants;
-import com.entab.commonutils.Applications.ConstantsUtils;
+import com.entab.commonutils.applications.ApplicationConstants;
+import com.entab.commonutils.applications.ConstantsUtils;
 import com.entab.pagerepository.pagemethods.PageCollections;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.*;
 
 import java.lang.invoke.MethodHandles;
@@ -12,7 +14,7 @@ import java.util.logging.Logger;
 
 
 public class Driver {
-    public static String env = System.getProperty("env");
+    public static String env = "sit";
 
     protected static String browser = null;
     protected static String baseUrl;
@@ -47,21 +49,18 @@ public class Driver {
     public static void endTest() {
     }
 
-    @BeforeClass
+    @AfterClass
 
     public void cleanUp() {
     }
 
-    @BeforeSuite
+    @AfterSuite
     public void close() {
         driver.close();
         if (driver != null) {
             driver.quit();
         }
 
-    }
-
-    public void setEnv() {
     }
 
     private void envSetup() {
@@ -81,15 +80,15 @@ public class Driver {
         try {
             switch (browser) {
                 case "chrome":
-                    WebDriverManager.chromedriver().setup();
+                    WebDriverManager.chromedriver().clearDriverCache().setup();
                     browserCapabilities();
                     startBrowser(baseUrl);
                     break;
                 case "firefox":
                     WebDriverManager.firefoxdriver().setup();
                     break;
-                case "safari":
-                    WebDriverManager.chromedriver().setup();
+                case "edge":
+                    WebDriverManager.edgedriver().setup();
                     break;
                 default:
                     break;
@@ -104,6 +103,9 @@ public class Driver {
     }
 
     public void browserCapabilities() {
-
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("window-size=1792,1120");
+        driver = new ChromeDriver(options);
+        driver.manage().window().maximize();
     }
 }

@@ -1,4 +1,4 @@
-package com.entab.commonutils.Applications;
+package com.entab.commonutils.applications;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -11,24 +11,16 @@ import java.util.List;
 import java.util.Properties;
 import java.util.Scanner;
 
-import static java.lang.System.getProperty;
 
 public class ConstantsUtils {
+
     private static ConstantsUtils constants;
-
     private static Properties props = null;
-    public static String env = System.getProperty("env");
-
     private static final String ENV_FILE_PATH = System.getProperty("user.dir");
-
-    private static final String PROPERTIES_FILE_PATH = ENV_FILE_PATH + "src/main/resources/properties";
-    private static final String PROPERTIES_ENV_PATH = PROPERTIES_FILE_PATH + env + ".properties";
-
-
-    private static final String COMMON_PROPERTIES_PATH = PROPERTIES_ENV_PATH + "common.properties";
-    private static final String MESSAGE_PROPERTIES_PATH = PROPERTIES_FILE_PATH + "message.properties";
-    private static final List<String> fileList = Arrays.asList(PROPERTIES_ENV_PATH, COMMON_PROPERTIES_PATH, MESSAGE_PROPERTIES_PATH);
-
+    private static final String PROPERTIES_FILE_PATH = ENV_FILE_PATH + "/src/main/resources/properties/";
+    private static final String PROPERTIES_ENV_PATH = PROPERTIES_FILE_PATH + "sit" + ".properties";
+    private static final String COMMON_PROPERTIES_PATH = PROPERTIES_FILE_PATH + "common.properties";
+    private static final List<String> fileList = Arrays.asList(PROPERTIES_ENV_PATH,COMMON_PROPERTIES_PATH);
 
     private ConstantsUtils() {
         props = new Properties();
@@ -46,7 +38,6 @@ public class ConstantsUtils {
             } catch (IOException e) {
                 System.out.println(e.getMessage());
             }
-
         });
     }
 
@@ -60,5 +51,4 @@ public class ConstantsUtils {
     public String getValue(String key) {
         return props.getProperty(key);
     }
-
 }
