@@ -5,6 +5,11 @@ public class LoginPageTest extends Driver {
 
     @Test
     public void testLogin() throws InterruptedException {
-        Thread.sleep(2000);
+        try{
+            commonLib.info("Going to test Landing page");
+            String landingPageTitleText = pages.getLandingPage().getLandingPageTitleText();
+        }catch (Exception e){
+            commonLib.error(e.getMessage());
+        }
     }
 }

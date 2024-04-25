@@ -2,6 +2,7 @@ package com.entab.driver;
 
 import com.entab.commonutils.applications.ApplicationConstants;
 import com.entab.commonutils.applications.ConstantsUtils;
+import com.entab.commonutils.commonlib.CommonLib;
 import com.entab.pagerepository.pagemethods.PageCollections;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
@@ -18,6 +19,8 @@ public class Driver {
 
     protected static String browser = null;
     protected static String baseUrl;
+    public CommonLib commonLib = new CommonLib();
+    public PageCollections pages;
 
     public static WebDriver driver;
     private static final Logger log = Logger.getLogger(MethodHandles.lookup().lookupClass().getSimpleName());
@@ -33,7 +36,7 @@ public class Driver {
     @BeforeClass
     private void pageSetup() {
         try {
-            PageCollections pages = new PageCollections(driver);
+             pages = new PageCollections(driver);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
