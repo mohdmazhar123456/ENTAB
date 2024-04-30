@@ -1,4 +1,4 @@
-package com.entab.commonutils.applications;
+package com.entab.commonutils.applications.constants;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -12,9 +12,9 @@ import java.util.Properties;
 import java.util.Scanner;
 
 
-public class ConstantsUtils {
+public class ConstantUtils {
 
-    private static ConstantsUtils constants;
+    private static ConstantUtils constants;
     private static Properties props = null;
     private static final String ENV_FILE_PATH = System.getProperty("user.dir");
     private static final String PROPERTIES_FILE_PATH = ENV_FILE_PATH + "/src/main/resources/properties/";
@@ -22,7 +22,7 @@ public class ConstantsUtils {
     private static final String COMMON_PROPERTIES_PATH = PROPERTIES_FILE_PATH + "common.properties";
     private static final List<String> fileList = Arrays.asList(PROPERTIES_ENV_PATH,COMMON_PROPERTIES_PATH);
 
-    private ConstantsUtils() {
+    private ConstantUtils() {
         props = new Properties();
         fileList.forEach(file -> {
             Scanner inFile;
@@ -41,9 +41,9 @@ public class ConstantsUtils {
         });
     }
 
-    public static ConstantsUtils getInstance() {
+    public static ConstantUtils getInstance() {
         if (constants == null) {
-            constants = new ConstantsUtils();
+            constants = new ConstantUtils();
         }
         return constants;
     }

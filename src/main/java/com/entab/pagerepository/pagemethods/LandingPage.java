@@ -14,5 +14,12 @@ public class LandingPage extends BasePage{
     public String getLandingPageTitleText(){
         return getText(pageElements.landingPageTitle);
     }
-
+    public void clickLoginBtn(){
+        click(pageElements.enterToLoginPage);
+    }
+    public String getUrl() throws InterruptedException {
+        hardWait();
+        return driver.getCurrentUrl();
+    }
 }
+

@@ -1,13 +1,12 @@
 package com.entab.pagerepository.pagemethods;
 
-import com.entab.commonutils.applications.ApplicationConstants;
+import com.entab.commonutils.applications.constants.ApplicationConstants;
 import com.entab.commonutils.commonlib.CommonLib;
 import com.entab.driver.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -43,12 +42,16 @@ WebDriverWait wait;
         }
 
     }
-    public void enterText(By elements,String text ){
-
-        driver.findElement(elements).sendKeys(text);
+    public void enterText(By elements,String text ) {
+        if (Boolean.TRUE.equals(isDisplayed(elements))) {
+            CommonLib.info("going to enter text in :" + elements);
+            driver.findElement(elements).sendKeys(text);
+        } else {
+            CommonLib.error("Web element :" + elements + "is Not displayed");
+        }
     }
-    public void hoverWebElement(By element){
-        WebElement element1 = driver.findElement(element);
+    public void hoverWebElement(By elements){
+        WebElement element1 = driver.findElement(elements);
         actions.moveToElement(element1).perform();
 
     }
@@ -59,10 +62,10 @@ WebDriverWait wait;
     public void hardWait(int time) throws InterruptedException {
         Thread.sleep(time);
     }
-    public Boolean isDisplayed(By element){
+    public Boolean isDisplayed(By elements){
         CommonLib.info("Going to check if element is displayed or not");
-         wait.until(ExpectedConditions.visibilityOfElementLocated(element));
-        boolean displayed = driver.findElement(element).isDisplayed();
+         wait.until(ExpectedConditions.visibilityOfElementLocated(elements));
+        boolean displayed = driver.findElement(elements).isDisplayed();
         CommonLib.info("If element visible ? "+displayed);
         return displayed;
     }

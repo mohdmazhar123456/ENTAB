@@ -1,4 +1,4 @@
-package com.entab.commonutils.applications;
+package com.entab.commonutils.applications.constants;
 
 public class ApplicationConstants {
     public static final String WEB_BROWSER = "entab.browser";
