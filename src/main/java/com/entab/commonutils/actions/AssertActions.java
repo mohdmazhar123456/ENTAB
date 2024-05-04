@@ -3,7 +3,7 @@ package com.entab.commonutils.actions;
 import com.entab.commonutils.commonlib.CommonLib;
 import org.testng.Assert;
 
-public class BaseActions {
+public class AssertActions {
 
     public static Boolean assertFlag = null;
 

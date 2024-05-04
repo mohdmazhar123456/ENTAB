@@ -4,6 +4,7 @@ import com.entab.commonutils.applications.constants.ApplicationConstants;
 import com.entab.commonutils.commonlib.CommonLib;
 import com.entab.driver.Driver;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -69,7 +70,14 @@ WebDriverWait wait;
         CommonLib.info("If element visible ? "+displayed);
         return displayed;
     }
-
+    public String getAttributeValue(By elements,String attributeName){
+        return driver.findElement(elements).getAttribute(attributeName);
+    }
+    public void clickWithJS(By locator) {
+        WebElement element = driver.findElement(locator);
+        JavascriptExecutor executor = (JavascriptExecutor) driver;
+        executor.executeScript("arguments[0].click();", element);
+    }
 
 }
 
