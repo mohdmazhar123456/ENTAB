@@ -12,4 +12,10 @@ public class PageCollections {
     public LandingPage getLandingPage(){
         return new LandingPage(driver);
     }
+    public LoginPage getLoginPage(){
+        return new LoginPage(driver);
+    }
+    public DashboardPage getDashboardPage(){
+        return new DashboardPage(driver);
+    }
 }

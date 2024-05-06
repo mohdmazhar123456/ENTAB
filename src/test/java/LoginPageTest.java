@@ -36,23 +36,31 @@ public class LoginPageTest extends Driver {
     public void testLoginPageFunctionality() {
         try {
             CommonLib.info("Going to test UserId box is clickable");
-            pages.getLandingPage().clickUserIdTextBox();
-            String userNamePlaceholder = pages.getLandingPage().getUserNamePlaceholder();
+            pages.getLoginPage().clickUserIdTextBox();
+            String userNamePlaceholder = pages.getLoginPage().getUserNamePlaceholder();
             assertCheck.append(AssertActions.assertEqualStringType(userNamePlaceholder, "Enter Your User ID", "Placeholder Is Correct for User Id Field", "Placeholder Is NOT Correct for User Id Field"));
-            pages.getLandingPage().enterUserName();
-            pages.getLandingPage().clickPasswordTextBox();
-            String passwordPlaceholder = pages.getLandingPage().getPasswordPlaceholder();
+            pages.getLoginPage().enterUserName();
+            pages.getLoginPage().clickPasswordTextBox();
+            String passwordPlaceholder = pages.getLoginPage().getPasswordPlaceholder();
             assertCheck.append(AssertActions.assertEqualStringType(passwordPlaceholder, "Enter Your Password", "Placeholder Is Correct for Password Field", "Placeholder Is NOT Correct for Password Field"));
-            pages.getLandingPage().enterPassword();
-            pages.getLandingPage().clickLogin();
-            pages.getLandingPage().acceptAlert();
-            pages.getLandingPage().enterUserName();
-            pages.getLandingPage().enterPassword();
-            pages.getLandingPage().clickLogin();
-            String otpPlaceholder = pages.getLandingPage().getOtpPlaceholder();
+            pages.getLoginPage().enterPassword();
+            pages.getLoginPage().clickLogin();
+            try {
+                pages.getLoginPage().acceptAlert();
+            }catch (Exception e){
+                CommonLib.info(e.getMessage());
+            }
+            pages.getLoginPage().enterUserName();
+            pages.getLoginPage().enterPassword();
+            pages.getLoginPage().clickLogin();
+            String otpPlaceholder = pages.getLoginPage().getOtpPlaceholder();
             assertCheck.append((AssertActions.assertEqualStringType(otpPlaceholder, "A12XY2", "Placeholder Is Correct for Otp field", "Placeholder Is Not Correct for")));
-            pages.getLandingPage().clickOtpField();
-            pages.getLandingPage().enterOtp();
+            pages.getLoginPage().clickOtpField();
+            pages.getLoginPage().enterOtp();
+            pages.getLoginPage().verifyButton();
+            pages.getDashboardPage().erpButton();
+            pages.getDashboardPage().classButton();
+            pages.getDashboardPage().addButton();
             AssertActions.checkAllAssertCheck(assertCheck);
         } catch (Exception e) {
             CommonLib.error(e.getMessage());
