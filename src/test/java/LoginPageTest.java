@@ -45,19 +45,27 @@ public class LoginPageTest extends Driver {
             assertCheck.append(AssertActions.assertEqualStringType(passwordPlaceholder, "Enter Your Password", "Placeholder Is Correct for Password Field", "Placeholder Is NOT Correct for Password Field"));
             pages.getLoginPage().enterPassword();
             pages.getLoginPage().clickLogin();
-            Thread.sleep(10000);
-            pages.getLoginPage().clickDateDropdown();
-            Thread.sleep(10000);
-            
-            pages.getLoginPage().clickOn2023Session();
-            Thread.sleep(10000);
-            
+            try {
+                pages.getLoginPage().acceptAlert();
+            }catch (Exception e){
+                CommonLib.info(e.getMessage());
+            }
+            pages.getLoginPage().enterUserName();
+            pages.getLoginPage().enterPassword();
+            pages.getLoginPage().clickLogin();
+            String otpPlaceholder = pages.getLoginPage().getOtpPlaceholder();
+            assertCheck.append((AssertActions.assertEqualStringType(otpPlaceholder, "A12XY2", "Placeholder Is Correct for Otp field", "Placeholder Is Not Correct for")));
+            pages.getLoginPage().clickOtpField();
+            pages.getLoginPage().enterOtp();
+            pages.getLoginPage().verifyButton();
+            pages.getDashboardPage().erpButton();
+            pages.getDashboardPage().classButton();
+            pages.getDashboardPage().addButton();
+            AssertActions.checkAllAssertCheck(assertCheck);
         } catch (Exception e) {
             CommonLib.error(e.getMessage());
         }
 
     }
-    
-    
 }
 

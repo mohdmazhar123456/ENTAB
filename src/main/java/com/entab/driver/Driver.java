@@ -30,7 +30,7 @@ public class Driver {
      * This is class variable
      */
     private static String browser;
-    private static String env = "regression";
+    private static String env = System.getProperty("env");
     public static WebDriver driver;
     public static String BASE_URL;
     public static ConstantUtils constants = ConstantUtils.getInstance();
@@ -42,8 +42,8 @@ public class Driver {
     public static final StringBuilder TESTCASE_DESCRIPTION_BUILDER = new StringBuilder(); // FOR ADDING TESTCASE DESCRIPTION IN EXTNT REPORTS
     public static final ExtentReport reporter = new ExtentReport();
     public static String MODIFIED_HTML_FILE_PATH = "";
-    public static final String USER_DIR = "C:\\FILES\\";
-	public static final String SUITE_TYPE = "regression";
+    public static final String USER_DIR = System.getProperty("user.dir");
+    public static final String SUITE_TYPE = System.getProperty("suiteType");
     public static final LocalDateTime dateTime = LocalDateTime.now();
     static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-dd-MM-HH-mm-ss");
     static String formattedDateTime = dateTime.format(formatter);
