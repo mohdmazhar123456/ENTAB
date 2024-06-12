@@ -12,7 +12,8 @@ public class LoginPage extends BasePage {
     public void clickUserIdTextBox() {
         click(LoginPageElements.userIdField);
     }
-
+    
+    
     public void enterUserName() {
         enterText(LoginPageElements.userIdField, "7878787878");
     }
@@ -29,6 +30,16 @@ public class LoginPage extends BasePage {
         clickWithJS(LoginPageElements.loginButton);
 
 
+    }
+    
+    public void clickDateDropdown() throws InterruptedException{
+
+    	clickWithJS(LoginPageElements.dateDropdown);
+    }
+    
+    public void clickOn2023Session() {
+    	
+    	clickWithJS(LoginPageElements.session2023);
     }
 
     public void acceptAlert() throws InterruptedException {
