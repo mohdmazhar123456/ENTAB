@@ -15,6 +15,10 @@ public class PageCollections {
     public LoginPage getLoginPage(){
         return new LoginPage(driver);
     }
+    
+    public MasterSettingPage getMasterSettingPage() {
+    	return new MasterSettingPage(driver);
+    }
     public DashboardPage getDashboardPage(){
         return new DashboardPage(driver);
     }
