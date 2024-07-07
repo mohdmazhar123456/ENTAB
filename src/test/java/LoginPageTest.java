@@ -15,6 +15,7 @@ public class LoginPageTest extends Driver {
         } catch (Exception e) {
             CommonLib.error(e.getMessage());
         }
+
     }
 
     @Test
