@@ -28,8 +28,6 @@ public class LoginPage extends BasePage {
 
     public void clickLogin() {
         clickWithJS(LoginPageElements.loginButton);
-
-
     }
     
     public void clickDateDropdown() throws InterruptedException{

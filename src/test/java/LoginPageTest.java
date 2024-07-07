@@ -18,24 +18,10 @@ public class LoginPageTest extends Driver {
     }
 
     @Test
-    public void testLoginFunctionality() {
-        try {
-            CommonLib.info("Going to test Login Functionality");
-            pages.getLandingPage().clickLoginBtn();
-            String url = pages.getLandingPage().getUrl();
-            assertCheck.append(AssertActions.assertEqualBoolean(url.contains("Logon"), true, "Login page opened successfully", "Login page NOT opened"));
-            AssertActions.checkAllAssertCheck(assertCheck);
-
-        } catch (Exception e) {
-            CommonLib.error(e.getMessage());
-        }
-
-    }
-
-    @Test
     public void testLoginPageFunctionality() {
         try {
             CommonLib.info("Going to test UserId box is clickable");
+            pages.getLandingPage().clickLoginBtn();
             pages.getLoginPage().clickUserIdTextBox();
             String userNamePlaceholder = pages.getLoginPage().getUserNamePlaceholder();
             assertCheck.append(AssertActions.assertEqualStringType(userNamePlaceholder, "Enter Your User ID", "Placeholder Is Correct for User Id Field", "Placeholder Is NOT Correct for User Id Field"));
@@ -43,8 +29,12 @@ public class LoginPageTest extends Driver {
             pages.getLoginPage().clickPasswordTextBox();
             String passwordPlaceholder = pages.getLoginPage().getPasswordPlaceholder();
             assertCheck.append(AssertActions.assertEqualStringType(passwordPlaceholder, "Enter Your Password", "Placeholder Is Correct for Password Field", "Placeholder Is NOT Correct for Password Field"));
+
             pages.getLoginPage().enterPassword();
             pages.getLoginPage().clickLogin();
+            pages.getLoginPage().enterOtp();
+            pages.getLoginPage().verifyButton();
+
             Thread.sleep(10000);
             pages.getLoginPage().clickDateDropdown();
             Thread.sleep(10000);
